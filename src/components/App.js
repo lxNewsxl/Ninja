@@ -176,11 +176,10 @@ export class App {
   }
 
   async joinRoom(roomId, passphrase) {
-    const room = this.state.rooms.find(r => r.id === roomId);
+    var room = this.state.rooms.find(r => r.id === roomId);
     
-    if (!room) {
-      alert('Room not found');
-      return;
+    if(!room){
+         room = {id:roomId, name:"unknown"};
     }
 
     try {
