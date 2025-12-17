@@ -1288,10 +1288,9 @@
       this.renderView();
     }
     async joinRoom(roomId, passphrase) {
-      const room = this.state.rooms.find((r) => r.id === roomId);
+      var room = this.state.rooms.find((r) => r.id === roomId);
       if (!room) {
-        alert("Room not found");
-        return;
+        room = { id: roomId, name: "unknown" };
       }
       try {
         await this.webrtc.joinRoom(room, passphrase);
