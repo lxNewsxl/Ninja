@@ -19,7 +19,16 @@
           { urls: "stun:stun1.l.google.com:19302" }
         ]
       };
-      this.pc = new RTCPeerConnection(config);
+      const iceConfiguration = {
+        iceServers: [
+          {
+            urls: "turn:openrelay.metered.ca:80",
+            username: "openrelayproject",
+            credentials: "openrelayproject"
+          }
+        ]
+      };
+      this.pc = new RTCPeerConnection(iceConfiguration);
       this.pc.onicecandidate = (event) => {
         if (event.candidate) {
           this.sendSignal({ type: "ice-candidate", candidate: event.candidate });
